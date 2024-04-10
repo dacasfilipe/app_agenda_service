@@ -1,12 +1,17 @@
 import { useForm } from "react-hook-form";
 import { api } from "../config_axios";
 import { useState } from "react";
+interface IUserFormFields {
+  username: string;
+  email: string;
+  senha: string;
+}
 
 const Cadastrar_Usuario = () => {
   const { register, handleSubmit,reset } = useForm();
   const [aviso, setAviso] = useState("");
 
-  const salvar = async (campos) => {
+  const salvar = async (campos:IUserFormFields) => {
     try {
       const response = await api.post("usuarios", campos);
       setAviso(`Usuário cadastrado com sucesso!"`);
